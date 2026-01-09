@@ -5,11 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>My Portfolio</title>
   <link rel="stylesheet" href="styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.fog.min.js"></script>
+  
 </head>
 
 <body>
 
-  <!-- Header -->
   <header class="glass">
     <nav>
       <h1>Aldrich</h1>
@@ -23,7 +25,6 @@
     </nav>
   </header>
 
-  <!-- Hero Section -->
   <section id="home" class="hero">
     <div class="container hero-grid">
       <div class="hero-text">
@@ -36,7 +37,6 @@
     </div>
   </section>
 
-  <!-- About Section -->
   <h4 class="section-title">About Me</h4>
   <section id="about" class="about-grid glass">
     <div class="about-content">
@@ -56,7 +56,6 @@
     </div>
   </section>
 
-<!-- Projects Section -->
   <section id="achievements">
     <div class="container">
       <h1 class="section-title">Achievements</h1>
@@ -83,7 +82,6 @@
     </div>
   </section>
 
-  <!-- Projects Section -->
   <section id="projects">
     <div class="container">
       <h1 class="section-title">Projects</h1>
@@ -104,7 +102,6 @@
     </div>
   </section>
 
-  <!-- Contact Section -->
   <section id="contact" class="contact-grid">
   <div class="contact-card glass">
     <h3>Contact</h3>
@@ -118,7 +115,6 @@
   </div>
 </section>
 
-  <!-- Footer -->
   <footer class="glass">
     <p>© 2026 Sales, Aldrich Maxxi Z. .</p>
   </footer>
@@ -149,11 +145,10 @@ let letter = "";
   document.querySelector(".typing").textContent = letter;
 
   if (letter.length === currentText.length) {
-    // Pause before deleting
     setTimeout(() => {
       index = 0;
       count++;
-      setTimeout(type, 500); // small pause before next word
+      setTimeout(type, 500); 
     }, 1000);
   } else {
     setTimeout(type, 150); // typing speed
@@ -162,7 +157,6 @@ let letter = "";
 </script>
 
 <script>
-// Smooth-scroll header anchor links to center the target section
 document.querySelectorAll('header nav a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function(e) {
     e.preventDefault();
@@ -170,14 +164,12 @@ document.querySelectorAll('header nav a[href^="#"]').forEach(anchor => {
     const target = document.querySelector(sel);
     if (!target) return;
     target.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    // update URL hash without jumping
     history.replaceState(null, '', sel);
   });
 });
 </script>
 
 <script>
-// Demo modal logic
 const demoBtns = document.querySelectorAll('.demo-btn');
 const demoModal = document.getElementById('demoModal');
 const demoVideo = document.getElementById('demoVideo');
@@ -208,10 +200,31 @@ demoBtns.forEach(btn => {
   });
 });
 
-// close handlers
 document.querySelectorAll('.modal-close').forEach(btn => btn.addEventListener('click', closeDemo));
 demoModal.addEventListener('click', (e) => { if (e.target === demoModal) closeDemo(); });
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeDemo(); });
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  if (typeof VANTA !== 'undefined') {
+    VANTA.FOG({
+      el: 'body',
+      mouseControls: true,
+      touchControls: true,
+      gyroControls: false,
+      minHeight: 200.00,
+      minWidth: 200.00,
+    highlightColor: 0x4dacde,
+  midtoneColor: 0xfbe2fc,
+  lowlightColor: 0xc978f4,
+  baseColor: 0xd7efff,
+      blurFactor: 0.35,
+      speed: 0.60,
+       zoom: 2
+    });
+  }
+});
 </script>
 
 </body>
